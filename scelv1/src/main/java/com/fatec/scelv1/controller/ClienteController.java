@@ -29,7 +29,7 @@ import com.fatec.scelv1.model.Cliente;
 
 import com.fatec.scelv1.servico.ClienteServico;
 
-
+//definicao dos endpoints
 @RestController
 @RequestMapping({ "/api" })
 public class ClienteController {
