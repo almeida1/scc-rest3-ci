@@ -56,7 +56,8 @@ class REQ04ExcluirClienteJWTTests {
     	//tenta se autenticar para obter o token com a senha errada
     	user = new ApplicationUser();
     	user.setUsername("maria");
-    	user.setPassword("1234");
+    	//user.setPassword("1234");
+    	user.setPassword("456"); // deve dar erro no caso de teste e mudar o status do ci
     	HttpEntity<ApplicationUser> httpEntity3 = new HttpEntity<>(user);
     	resposta = testRestTemplate.exchange("/login", HttpMethod.POST,  httpEntity3, String.class);
     	assertEquals(HttpStatus.FORBIDDEN, resposta.getStatusCode());
