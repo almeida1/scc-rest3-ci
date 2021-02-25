@@ -3,6 +3,7 @@ package com.fatec.scelv1.servico;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fatec.scelv1.controller.ClienteController;
+import com.fatec.scelv1.model.ApplicationUser;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -20,7 +21,17 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
 
-
+/**
+ * Esta classe estende UsernamePasswordAuthenticationFilter, que é a classe padrão 
+ * para autenticação de senha no Spring Security. Esta classe permite personalisar 
+ * a lógica de autenticação.
+ * Pode-se definir no construtor uma chamada ao método setFilterProcessesUrl. Este método 
+ * define o URL de login padrão para o parâmetro fornecido. 
+ * Neste exemplo nao foi definido um construtor, portanto o Spring Security cria o endpoint “/login” 
+ * por padrão.
+ * @author almeida
+ *
+ */
 
 public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
     
@@ -34,14 +45,22 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         this.authenticationManager = authenticationManager;
         this.jwtUtil = jwtUtil;
     }
-
+	/**
+	* A função tentativa de autenticacao é executada quando o usuário da aplicação tenta efetuar login 
+	* na aplicação. Ele lê as credenciais, cria um POJO do usuário a partir delas e, em seguida, 
+	* verifica as credenciais para autenticar.
+	* O nome de usuário, a senha e uma lista vazia sao passados como parametro. A lista vazia 
+	* representa a autorizacao (funções liberadas para o usuario) 
+	* neste exemplo um usuario autenticado esta autorizado a utilizar todas as funcoes.
+	* Se a autenticação for bem-sucedida, o método successfulAuthentication é executado. 
+	* Os parâmetros desse método são passados pelo Spring Security nos bastidores.
+	*/
     @Override
     public Authentication attemptAuthentication(HttpServletRequest req,
                                                 HttpServletResponse res) throws AuthenticationException {
        logger.info(">>>>>> tentativa de autenticacao => ");
     	try {
-            ApplicationUser creds = new ObjectMapper()
-                    .readValue(req.getInputStream(), ApplicationUser.class);
+            ApplicationUser creds = new ObjectMapper().readValue(req.getInputStream(), ApplicationUser.class);
 
             return this.authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(

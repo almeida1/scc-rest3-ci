@@ -12,8 +12,9 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+
+import com.fatec.scelv1.model.ApplicationUser;
 import com.fatec.scelv1.model.Cliente;
-import com.fatec.scelv1.servico.ApplicationUser;
 
 
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)

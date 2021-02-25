@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.fatec.scelv1.servico.ApplicationUser;
-import com.fatec.scelv1.servico.ApplicationUserRepository;
+import com.fatec.scelv1.model.ApplicationUser;
+import com.fatec.scelv1.model.ApplicationUserRepository;
 
 @RestController
 @RequestMapping("/users")

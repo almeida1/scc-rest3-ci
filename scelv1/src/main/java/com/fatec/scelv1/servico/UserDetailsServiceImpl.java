@@ -6,6 +6,9 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import com.fatec.scelv1.model.ApplicationUser;
+import com.fatec.scelv1.model.ApplicationUserRepository;
+
 import static java.util.Collections.emptyList;
 
 @Service

@@ -1,4 +1,4 @@
-package com.fatec.scelv1.servico;
+package com.fatec.scelv1.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

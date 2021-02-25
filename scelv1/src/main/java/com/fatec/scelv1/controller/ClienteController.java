@@ -37,7 +37,7 @@ public class ClienteController {
 	@Autowired
 	private ClienteServico servico;
 
-	@GetMapping("/clientes/v1/consulta")
+	@GetMapping("/v1/clientes")
 	//@PreAuthorize("hasRole('ADMIN') or hasRole('BIB')")
 	public ResponseEntity<List<Cliente>> findAll() {
 		logger.info(">>>>>> 1. controller chamou servico consulta todos");
@@ -45,20 +45,20 @@ public class ClienteController {
 
 	}
 
-	@GetMapping(path = { "/clientes/v1/consulta_id/{id}" })
+	@GetMapping(path = { "/v1/clientes/id/{id}" })
 	public ResponseEntity<Cliente> findById(@PathVariable long id) {
 		logger.info(">>>>>> 1. controller chamou servico consulta por id");
 		return servico.consultaPorId(id);
 	}
 
-	@GetMapping(path = { "/clientes/v1/consulta_cpf/{cpf}" })
+	@GetMapping(path = { "/v1/clientes/{cpf}" })
 	public ResponseEntity<Cliente> findByCpf(@PathVariable String cpf) {
 		logger.info(">>>>>> 1. controller chamou servico consultar cpf");
 		return servico.consultaPorCpf(cpf);
 		
 	}
 
-	@PostMapping("/clientes/v1/save")
+	@PostMapping("/v1/clientes")
 	public ResponseEntity<Object> create(@RequestBody @Valid Cliente cliente, BindingResult result) {
 		if (result.hasErrors()) {
 			logger.info(">>>>>> 1. controller chamou servico save - erro detectado bean validation");
@@ -71,13 +71,13 @@ public class ClienteController {
 
 	}
 
-	@PutMapping(value = "/clientes/v1/update/{id}")
+	@PutMapping(value = "/v1/clientes/{id}")
 	public ResponseEntity<Object> update(@PathVariable("id") long id, @RequestBody @Valid Cliente cliente) {
 		logger.info(">>>>>> 1. controller chamou servico atualiza");
 		return servico.atualiza(id, cliente);
 	}
 
-	@DeleteMapping(path = { "/clientes/v1/delete/{id}" })
+	@DeleteMapping(path = { "/v1/clientes/{id}" })
 	//@PreAuthorize("hasRole('ADMIN')")
 	public ResponseEntity<?> remover(@PathVariable long id, @AuthenticationPrincipal UserDetails userDetails) {
 		logger.info(">>>>>> 1. controller chamou servico remover");
